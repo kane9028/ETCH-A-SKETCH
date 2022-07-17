@@ -5,6 +5,10 @@ addGrids(16);
 const container = document.querySelector('.container');
 container.addEventListener('mouseover', changeColor);
 
+//click button to change pixel size
+const changePixelSizeBtn = document.querySelector('.changePixelSize');
+changePixelSizeBtn.addEventListener('click', changePixelSize);
+
 //using loop to add grids based on the selected size num
 function addGrids(num) {
   let totalGrids = num ** 2;
@@ -26,4 +30,14 @@ function addOneGrid() {
 
 function changeColor(e) {
   e.target.style.background = 'black';
+}
+
+function changePixelSize() {
+  let newSize = prompt('Please enter new pixel size between 1 ~ 100:');
+  while(newSize > 100 || newSize < 1) {
+    newSize = prompt('Wrong Number! Please enter new pixel size between 1 ~ 100:');
+  }
+  const container = document.querySelector('.container');
+  container.textContent = '';
+  addGrids(newSize);
 }
