@@ -8,6 +8,8 @@ function addGrids(num) {
     addOneGrid();
     totalGrids--;
   }
+  const container = document.querySelector('.container');
+  container.setAttribute('style', 'grid-template-columns: repeat('+num+', 1fr);')
 }
 
 //function to add one grid
