@@ -1,0 +1,12 @@
+html {
+  background-color: grey;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.container {
+  height: 400px;
+  width: 400px;
+  background-color: white;
+}
