@@ -1,6 +1,11 @@
 // add grids to container with default 16x16
 addGrids(16);
 
+//toggle rainbow mode
+let rainbowMode = false;
+const rainbowBtn = document.querySelector('.rainbow');
+rainbowBtn.addEventListener('click', switchRainbowMode);
+
 //change color when mouseover
 const container = document.querySelector('.container');
 container.addEventListener('mouseover', changeColor);
@@ -29,7 +34,14 @@ function addOneGrid() {
 }
 
 function changeColor(e) {
-  e.target.style.background = 'black';
+  if(rainbowMode === true) {
+    const randomR = Math.floor(Math.random() * 256);
+    const randomG = Math.floor(Math.random() * 256);
+    const randomB = Math.floor(Math.random() * 256);
+    e.target.style.background = `rgb(${randomR}, ${randomG}, ${randomB})`;
+  } else {
+    e.target.style.background = 'black';
+  }
 }
 
 function changePixelSize() {
@@ -40,4 +52,14 @@ function changePixelSize() {
   const container = document.querySelector('.container');
   container.textContent = '';
   addGrids(newSize);
+}
+
+function switchRainbowMode() {
+  if(rainbowMode) {
+    rainbowMode = false;
+    rainbowBtn.textContent = 'Rainbow Mode: off';
+  } else {
+    rainbowMode = true;
+    rainbowBtn.textContent = 'Rainbow Mode: on';
+  }
 }
