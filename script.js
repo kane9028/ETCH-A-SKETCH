@@ -1,6 +1,11 @@
 // add grids to container with default 16x16
 addGrids(16);
 
+//toggle shading mode
+let shadingMode = false;
+const shadingBtn = document.querySelector('.shading');
+shadingBtn.addEventListener('click', switchShadingMode);
+
 //toggle rainbow mode
 let rainbowMode = false;
 const rainbowBtn = document.querySelector('.rainbow');
@@ -39,8 +44,14 @@ function changeColor(e) {
     const randomG = Math.floor(Math.random() * 256);
     const randomB = Math.floor(Math.random() * 256);
     e.target.style.background = `rgb(${randomR}, ${randomG}, ${randomB})`;
+  } else if (e.target.style.background && shadingMode === true) {
+    e.target.style.opacity = parseFloat(e.target.style.opacity)+ 0.1;
+  } else if (shadingMode === true) {
+    e.target.style.background = 'rgb(0, 0, 0)';
+    e.target.style.opacity = 0.1;
   } else {
-    e.target.style.background = 'black';
+    e.target.style.background = 'rgb(0, 0, 0)';
+    e.target.style.opacity = 1;
   }
 }
 
@@ -61,5 +72,15 @@ function switchRainbowMode() {
   } else {
     rainbowMode = true;
     rainbowBtn.textContent = 'Rainbow Mode: on';
+  }
+}
+
+function switchShadingMode() {
+  if(shadingMode) {
+    shadingMode = false;
+    shadingBtn.textContent = 'Shading Mode: off';
+  } else {
+    shadingMode = true;
+    shadingBtn.textContent = 'Shading Mode: on';
   }
 }
